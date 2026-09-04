@@ -12,23 +12,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Check if we are testing locally or if the app is live in production
-    const hostname = window.location.hostname;
-    const isLocalhost = hostname.includes("localhost") || hostname.includes("127.0.0.1");
+    const API_BASE_URL = "https://cbe-quicksite-backend.onrender.com";
 
-    // 2. Set the root API address dynamically based on the environment
-    
-      const API_BASE_URL = "https://cbe-quicksite-backend.onrender.com";
+    // Read the slug from the URL path (e.g. cbe-client-site.vercel.app/joesbarber)
+    const slug = window.location.pathname.split("/")[1] || "joesbarber";
 
-    // 3. Dynamically extract the customer prefix name out of the browser address bar
-    const parts = hostname.split(".");
-    let slug = "joesbarber"; // Default safe fallback profile for testing
-
-    if (parts.length > 2 && !isLocalhost) {
-      slug = parts[0]; // Captures "joesbarber" from "://cbequicksite.com"
-    }
-
-    // 4. Fire the sequential database request tree
     fetch(`${API_BASE_URL}/clients/${slug}`)
       .then((res) => {
         if (!res.ok) throw new Error("Client profile database fetch failed");
@@ -37,7 +25,6 @@ function App() {
       .then((data) => {
         if (data.success && data.client) {
           setClient(data.client);
-          // Return the subsequent relative inventory lookup array loop
           return fetch(`${API_BASE_URL}/listings/client/${data.client.id}`);
         } else {
           throw new Error("Client record absent in query");
@@ -59,7 +46,6 @@ function App() {
       });
   }, []);
 
-  // Professional minimal dark state loader matching your quick site dashboard look
   if (loading) {
     return (
       <div style={{ background: "#1A1A1A", color: "#F5F3EF", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontFamily: "sans-serif" }}>
@@ -68,7 +54,6 @@ function App() {
     );
   }
 
-  // Graceful fallback display block if no profile record answers the database query loop
   if (!client) {
     return (
       <div style={{ background: "#1A1A1A", color: "#F5F3EF", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
@@ -78,7 +63,6 @@ function App() {
     );
   }
 
-  // Map out contact coordinates safely combining core backend values with default structural paths
   const contactData = {
     phone: client.phone || "08012345678",
     email: client.email || "hello@joesbarbershop.com",
@@ -86,31 +70,21 @@ function App() {
     socialLinks: {
       facebook: client.social_facebook,
       instagram: client.social_instagram,
-      whatsapp: client.social_whatsapp || client.phone, // Gracefully uses primary phone if whatsapp field is blank
+      whatsapp: client.social_whatsapp || client.phone,
     },
   };
 
   return (
     <div className="App">
       <Navbar businessName={client.business_name} logoUrl={client.logo_url} />
-      
       <Home
         businessName={client.business_name}
         description={client.home_text}
         heroImageUrl={client.background_image_url}
       />
-      
       <Projects listings={listings} />
-      
-      <About 
-        businessName={client.business_name} 
-        aboutText={client.about_text} 
-      />
-      
-      <Contact 
-        businessName={client.business_name} 
-        {...contactData} 
-      />
+      <About businessName={client.business_name} aboutText={client.about_text} />
+      <Contact businessName={client.business_name} {...contactData} />
     </div>
   );
 }
