@@ -8,7 +8,7 @@ function Contact({ businessName, phone, email, address, socialLinks }) {
     if (waInput.startsWith("http")) return waInput;
     // Cleans out common extra characters from loose number entries
     const cleanNum = waInput.replace(/[^0-9]/g, "");
-    return `https://wa.me{cleanNum}?text=Hello%20${encodeURIComponent(businessName || "Business")}%2C%20I%20am%20interested%20in%20your%20services.`;
+    return `https://wa.me/${cleanNum}?text=Hello%20${encodeURIComponent(businessName || "Business")}%2C%20I%20am%20interested%20in%20your%20services.`;
   };
 
   return (
