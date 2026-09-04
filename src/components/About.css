@@ -1,0 +1,36 @@
+.about {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.about p.about-text {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #555555;
+  font-size: 1rem;
+  line-height: 1.6;
+  /* Crucial upgrade: preserves line breaks when clients type paragraphs in their dashboard */
+  white-space: pre-line; 
+}
+
+/* Smooth layout scaling for widescreen monitors */
+@media (min-width: 768px) {
+  .about {
+    padding: 80px 40px;
+  }
+  .about h2 {
+    font-size: 2rem;
+  }
+  .about p.about-text {
+    font-size: 1.05rem;
+  }
+}

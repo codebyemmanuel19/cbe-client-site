@@ -1,0 +1,138 @@
+.projects {
+  background-color: #FAFAFA;
+  color: #1A1A1A;
+  padding: 60px 24px;
+}
+
+.projects h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 32px;
+  color: #1A1A1A;
+  font-weight: 700;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Tweaked to 240px for ideal photo distribution */
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.image-slider {
+  position: relative;
+  width: 100%;
+}
+
+.image-slider img {
+  width: 100%;
+  height: 180px; /* Tweaked up for stronger product visual impact */
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
+  border: none;
+  font-size: 1.4rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.arrow.left {
+  left: 8px;
+}
+
+.arrow.right {
+  right: 8px;
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease;
+}
+
+.dot.active {
+  background: #2563EB;
+  width: 12px; /* Subtle pill expansion for modern state indication */
+  border-radius: 3px;
+}
+
+.project-card h3 {
+  margin: 14px 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.project-card p {
+  color: #555555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  flex-grow: 1; /* Pushes content down so cards share uniform heights */
+}
+
+.price {
+  color: #2563EB;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: auto; /* Anchors price layout neatly to base line */
+}
+
+.no-listings {
+  text-align: center;
+  color: #777777;
+  grid-column: 1 / -1;
+  font-size: 1rem;
+  padding: 40px 0;
+}
+
+@media (min-width: 768px) {
+  .projects {
+    padding: 80px 40px;
+  }
+  .projects h2 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,134 @@
+/* --- Mobile Layout Base Settings --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #1A1A1A;
+}
+
+.navbar-logo {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #1A1A1A;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  max-width: 320px;
+  height: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+  gap: 28px;
+  transition: right 0.3s ease;
+  z-index: 999;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-menu.open {
+  right: 0;
+}
+
+.navbar-menu a {
+  color: #1A1A1A;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.navbar-menu .cta-button {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 14px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #1A1A1A;
+  cursor: pointer;
+}
+
+/* --- 🖥️ Desktop Media Query Upgrade --- */
+@media (min-width: 768px) {
+  .menu-toggle, .close-btn, .navbar-overlay {
+    display: none !important; /* Hides mobile toggles on large screens */
+  }
+
+  .navbar-top {
+    padding: 16px 40px;
+  }
+
+  .navbar-menu {
+    position: static; /* Removes fixed mobile sidebar behavior */
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    height: auto;
+    padding: 0;
+    gap: 32px;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* Combines the drawer space and top bar together seamlessly on laptops */
+  .navbar {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 40px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-top {
+    box-shadow: none;
+  }
+
+  .navbar-menu .cta-button {
+    margin-top: 0;
+    padding: 10px 20px;
+  }
+}

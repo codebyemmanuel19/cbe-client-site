@@ -1,0 +1,44 @@
+.home {
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.home-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%); /* Gives an elite dark fade effect */
+  width: 100%;
+  padding: 60px 24px 40px 24px;
+}
+
+.home-overlay h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.home-overlay p {
+  font-size: 1.1rem;
+  color: #F0F0F0;
+  max-width: 600px;
+  line-height: 1.4;
+}
+
+/* Responsive adjustment for desktop laptops */
+@media (min-width: 768px) {
+  .home {
+    height: 85vh;
+  }
+  .home-overlay {
+    padding: 80px 48px;
+  }
+  .home-overlay h1 {
+    font-size: 3rem;
+  }
+}
