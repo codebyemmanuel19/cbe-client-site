@@ -14,18 +14,14 @@ function App() {
   useEffect(() => {
     const API_BASE_URL = "https://cbe-quicksite-backend.onrender.com";
 
-    // Extract the client slug from the subdomain (e.g. "joesbarber" from joesbarber.cbequicksite.com)
     const hostname = window.location.hostname;
     const parts = hostname.split(".");
-    let slug = "joesbarber"; // Default safe fallback profile for testing
+    let slug = "joesbarber";
 
-    // cbequicksite.com (root, 2 parts) or cbe-client-site.vercel.app (3 parts, not a real client)
-    // joesbarber.cbequicksite.com (3 parts, real subdomain) should extract "joesbarber"
     if (parts.length > 2 && hostname.endsWith("cbequicksite.com")) {
       slug = parts[0];
     }
 
-    // Fire the sequential database request tree
     fetch(`${API_BASE_URL}/clients/${slug}`)
       .then((res) => {
         if (!res.ok) throw new Error("Client profile database fetch failed");
@@ -34,7 +30,6 @@ function App() {
       .then((data) => {
         if (data.success && data.client) {
           setClient(data.client);
-          // Return the subsequent relative inventory lookup array loop
           return fetch(`${API_BASE_URL}/listings/client/${data.client.id}`);
         } else {
           throw new Error("Client record absent in query");
@@ -56,7 +51,6 @@ function App() {
       });
   }, []);
 
-  // Professional minimal dark state loader matching your quick site dashboard look
   if (loading) {
     return (
       <div style={{ background: "#1A1A1A", color: "#F5F3EF", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontFamily: "sans-serif" }}>
@@ -65,7 +59,6 @@ function App() {
     );
   }
 
-  // Graceful fallback display block if no profile record answers the database query loop
   if (!client) {
     return (
       <div style={{ background: "#1A1A1A", color: "#F5F3EF", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
@@ -75,7 +68,6 @@ function App() {
     );
   }
 
-  // Map out contact coordinates safely combining core backend values with default structural paths
   const contactData = {
     phone: client.phone || "08012345678",
     email: client.email || "hello@joesbarbershop.com",
@@ -83,7 +75,7 @@ function App() {
     socialLinks: {
       facebook: client.social_facebook,
       instagram: client.social_instagram,
-      whatsapp: client.social_whatsapp || client.phone, // Gracefully uses primary phone if whatsapp field is blank
+      whatsapp: client.social_whatsapp || client.phone,
     },
   };
 
@@ -93,8 +85,8 @@ function App() {
       
       <Home
         businessName={client.business_name}
-        description={client.home_text}
-        heroImageUrl={client.background_image_url}
+        description={client.about_text}
+        heroImageUrl={client.hero_url}
       />
       
       <Projects listings={listings} />
