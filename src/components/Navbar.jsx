@@ -11,18 +11,16 @@ function Navbar({ businessName, logoUrl }) {
     <nav className="navbar">
       <div className="navbar-top">
         <div className="navbar-brand">
-          {logoUrl ? (
+          {logoUrl && (
             <img src={logoUrl} alt={businessName} className="navbar-logo" />
-          ) : (
-            businessName || "Business Name"
           )}
+          <span className="navbar-name">{businessName || "Business Name"}</span>
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>
           ☰
         </button>
       </div>
 
-      {/* Backdrop overlay that closes the drawer when clicking outside on mobile */}
       {isOpen && <div className="navbar-overlay" onClick={closeMenu}></div>}
 
       <div className={`navbar-menu ${isOpen ? "open" : ""}`}>
