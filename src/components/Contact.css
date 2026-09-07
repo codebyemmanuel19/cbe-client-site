@@ -1,14 +1,14 @@
 .contact {
-  background-color: #FAFAFA;
+  background-color: #F8FAFC;
   color: var(--color-heading);
   text-align: center;
-  padding: 60px 24px;
+  padding: 60px 20px;
 }
 
 .contact h2 {
   font-family: var(--font-main);
   font-size: 1.6rem;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--color-heading);
@@ -17,69 +17,102 @@
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto 32px auto;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.contact-item:not(:last-child) {
+  border-bottom: 1px solid #F1F5F9;
 }
 
 .contact-icon {
-  color: var(--color-dark);
-  font-size: 1.1rem;
+  color: #FFFFFF;
+  background-color: var(--color-dark);
+  font-size: 0.9rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .contact-item a {
   font-family: var(--font-main);
   color: var(--color-dark);
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   transition: color 0.2s ease;
 }
 
 .contact-item a:hover {
   color: #2563EB;
-  text-decoration: underline;
+}
+
+.contact-address {
+  max-width: 400px;
+  margin: 0 auto 32px auto;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .contact-address h3,
 .contact-social h3 {
   font-family: var(--font-main);
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
   font-weight: 700;
-  color: var(--color-heading);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .contact-address p {
   font-family: var(--font-main);
-  color: var(--color-text);
-  margin-bottom: 32px;
-  font-size: 0.95rem;
+  color: var(--color-heading);
+  font-size: 1rem;
   line-height: 1.5;
+  margin: 0;
+}
+
+.contact-social {
+  margin-bottom: 40px;
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 .social-icon-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   color: #FFFFFF;
   font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
@@ -105,7 +138,7 @@
 }
 
 .contact-footer {
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid #E2E8F0;
   padding-top: 20px;
   color: var(--color-text);
   font-size: 0.85rem;
@@ -120,10 +153,5 @@
   }
   .contact h2 {
     font-size: 2rem;
-  }
-  .contact-info {
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
   }
 }
