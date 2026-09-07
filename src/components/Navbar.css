@@ -1,4 +1,3 @@
-/* --- Mobile Layout Base Settings --- */
 .navbar {
   position: sticky;
   top: 0;
@@ -11,14 +10,16 @@
   align-items: center;
   padding: 16px 24px;
   background-color: #FFFFFF;
-  color: #1A1A1A;
+  color: var(--color-heading);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .navbar-brand {
-  font-weight: 700;
+  font-family: var(--font-main);
+  font-weight: 800;
   font-size: 1.2rem;
-  color: #1A1A1A;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
 }
 
 .navbar-logo {
@@ -30,7 +31,7 @@
 .menu-toggle {
   background: none;
   border: none;
-  color: #1A1A1A;
+  color: var(--color-heading);
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -67,19 +68,22 @@
 }
 
 .navbar-menu a {
-  color: #1A1A1A;
+  font-family: var(--font-main);
+  color: var(--color-heading);
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .navbar-menu .cta-button {
-  background-color: #2563EB;
+  font-family: var(--font-main);
+  background-color: var(--color-dark);
   color: #FFFFFF;
   text-align: center;
   padding: 14px;
   border-radius: 6px;
   margin-top: 12px;
+  font-weight: 700;
 }
 
 .close-btn {
@@ -87,14 +91,14 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #1A1A1A;
+  color: var(--color-heading);
   cursor: pointer;
 }
 
 /* --- 🖥️ Desktop Media Query Upgrade --- */
 @media (min-width: 768px) {
   .menu-toggle, .close-btn, .navbar-overlay {
-    display: none !important; /* Hides mobile toggles on large screens */
+    display: none !important;
   }
 
   .navbar-top {
@@ -102,7 +106,7 @@
   }
 
   .navbar-menu {
-    position: static; /* Removes fixed mobile sidebar behavior */
+    position: static;
     flex-direction: row;
     align-items: center;
     width: auto;
@@ -113,7 +117,6 @@
     background: transparent;
   }
 
-  /* Combines the drawer space and top bar together seamlessly on laptops */
   .navbar {
     background-color: #FFFFFF;
     display: flex;
