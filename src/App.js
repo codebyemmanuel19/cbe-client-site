@@ -86,7 +86,7 @@ function App() {
       
       <Home
         businessName={client.business_name}
-        description={client.about_text}
+        description={client.home_text}
         heroImageUrl={client.hero_url}
       />
       
