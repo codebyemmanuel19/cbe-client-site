@@ -1,37 +1,52 @@
 .home {
-  height: 80vh;
+  height: 60vh;
+  min-height: 420px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   color: #FFFFFF;
   position: relative;
 }
 
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
 .home-overlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+  position: relative;
+  z-index: 1;
   width: 100%;
-  padding: 60px 24px 40px 24px;
+  max-width: 700px;
+  padding: 0 24px;
+  text-align: center;
 }
 
 .home-overlay h1 {
   font-family: var(--font-main);
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: #FFFFFF;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .home-overlay p {
   font-family: var(--font-main);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #F0F0F0;
-  max-width: 600px;
-  line-height: 1.4;
-  margin-bottom: 24px;
+  max-width: 500px;
+  margin: 0 auto 24px auto;
+  line-height: 1.5;
 }
 
 .home-cta {
@@ -52,16 +67,13 @@
   transform: translateY(-2px);
 }
 
-/* Responsive adjustment for desktop laptops */
 @media (min-width: 768px) {
   .home {
-    height: 85vh;
-  }
-  .home-overlay {
-    padding: 80px 48px;
+    height: 70vh;
+    min-height: 500px;
   }
   .home-overlay h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
   .home-cta {
     padding: 16px 36px;
