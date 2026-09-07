@@ -76,6 +76,7 @@ function App() {
       facebook: client.social_facebook,
       instagram: client.social_instagram,
       whatsapp: client.social_whatsapp || client.phone,
+      tiktok: client.social_tiktok,
     },
   };
 
