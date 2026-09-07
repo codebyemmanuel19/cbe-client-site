@@ -1,24 +1,43 @@
 .home {
-  height: 70vh;
-  min-height: 420px;
+  height: 78svh;
+  min-height: 460px;
+  max-height: 720px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;      /* text sits at the bottom, not on top of the product */
   color: #FFFFFF;
   position: relative;
 }
 
+/* Fallback for browsers without svh support */
+@supports not (height: 78svh) {
+  .home { height: 78vh; }
+}
+
+/* Gradient scrim instead of a flat black wash:
+   dark where the text is, almost clear over the product */
 .home::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.55);
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 12, 16, 0.88) 0%,
+    rgba(10, 12, 16, 0.72) 28%,
+    rgba(10, 12, 16, 0.28) 58%,
+    rgba(10, 12, 16, 0.10) 100%
+  );
+}
+
+/* Used when the client hasn't uploaded a banner yet */
+.home--no-image {
+  background-image: linear-gradient(160deg, #1c2432 0%, #2f3b4f 60%, #3d4a60 100%);
+}
+
+.home--no-image::before {
+  background: rgba(10, 12, 16, 0.25);
 }
 
 .home-overlay {
@@ -26,40 +45,50 @@
   z-index: 1;
   width: 100%;
   max-width: 700px;
-  padding: 0 24px;
-  text-align: center;
+  padding: 0 24px 44px;
+  text-align: left;
 }
 
 .home-overlay h1 {
   font-family: var(--font-main);
-  font-size: 2rem;
+  font-size: clamp(2rem, 8.5vw, 2.6rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+  margin: 0 0 10px;
   color: #FFFFFF;
-  line-height: 1.25;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 
 .home-overlay p {
   font-family: var(--font-main);
   font-size: 1.05rem;
-  color: #F0F0F0;
-  max-width: 500px;
-  margin: 0 auto 24px auto;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 34ch;
+  margin: 0 0 24px;
   line-height: 1.5;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .home-cta {
   font-family: var(--font-main);
+  display: inline-block;
   background-color: #FFFFFF;
   color: var(--color-dark);
-  border: none;
-  padding: 14px 28px;
+  border: 1px solid #FFFFFF;
+  padding: 14px 26px;
   border-radius: 8px;
   font-weight: 700;
   font-size: 0.95rem;
+  text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .home-cta:hover {
@@ -67,16 +96,67 @@
   transform: translateY(-2px);
 }
 
+/* Secondary action — readable on any photo without stealing focus */
+.home-cta--ghost {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.home-cta--ghost:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: #FFFFFF;
+}
+
+.home-cta:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta {
+    transition: none;
+  }
+  .home-cta:hover {
+    transform: none;
+  }
+}
+
 @media (min-width: 768px) {
   .home {
-    height: 70vh;
-    min-height: 500px;
+    height: 82svh;
+    min-height: 540px;
+    align-items: center;
   }
+
+  .home-overlay {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
   .home-overlay h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2.8rem, 4.4vw, 3.6rem);
   }
+
+  .home-overlay p {
+    font-size: 1.15rem;
+    max-width: 40ch;
+  }
+
   .home-cta {
-    padding: 16px 36px;
+    padding: 16px 34px;
     font-size: 1rem;
+  }
+
+  /* On wide screens the text sits left, so darken that side instead of the bottom */
+  .home::before {
+    background: linear-gradient(
+      to right,
+      rgba(10, 12, 16, 0.86) 0%,
+      rgba(10, 12, 16, 0.62) 45%,
+      rgba(10, 12, 16, 0.15) 100%
+    );
   }
 }
