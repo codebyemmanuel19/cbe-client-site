@@ -1,25 +1,28 @@
 .about {
   background-color: #FFFFFF;
-  color: #1A1A1A;
+  color: var(--color-heading);
   padding: 60px 24px;
   text-align: center;
 }
 
 .about h2 {
+  font-family: var(--font-main);
   font-size: 1.6rem;
   margin-bottom: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
 }
 
 .about p.about-text {
+  font-family: var(--font-main);
   max-width: 600px;
   margin: 0 auto;
-  color: #555555;
+  color: var(--color-text);
   font-size: 1rem;
   line-height: 1.6;
   /* Crucial upgrade: preserves line breaks when clients type paragraphs in their dashboard */
-  white-space: pre-line; 
+  white-space: pre-line;
 }
 
 /* Smooth layout scaling for widescreen monitors */

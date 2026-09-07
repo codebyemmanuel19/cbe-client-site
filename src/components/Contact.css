@@ -1,14 +1,17 @@
 .contact {
   background-color: #FAFAFA;
-  color: #1A1A1A;
+  color: var(--color-heading);
   text-align: center;
   padding: 60px 24px;
 }
 
 .contact h2 {
+  font-family: var(--font-main);
   font-size: 1.6rem;
   margin-bottom: 32px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
 }
 
 .contact-info {
@@ -22,11 +25,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.contact-icon {
+  color: var(--color-dark);
+  font-size: 1.1rem;
 }
 
 .contact-item a {
-  color: #2563EB;
+  font-family: var(--font-main);
+  color: var(--color-dark);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -34,20 +43,22 @@
 }
 
 .contact-item a:hover {
-  color: #1D4ED8;
+  color: #2563EB;
   text-decoration: underline;
 }
 
 .contact-address h3,
 .contact-social h3 {
+  font-family: var(--font-main);
   font-size: 1.1rem;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #1A1A1A;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--color-heading);
 }
 
 .contact-address p {
-  color: #555555;
+  font-family: var(--font-main);
+  color: var(--color-text);
   margin-bottom: 32px;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -56,29 +67,51 @@
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   margin-bottom: 40px;
 }
 
-.social-icons a {
-  color: #2563EB;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.social-icons a:hover {
-  color: #1D4ED8;
+.social-icon-link:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+.social-icon-link.facebook {
+  background-color: #1877F2;
+}
+
+.social-icon-link.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.social-icon-link.tiktok {
+  background-color: #000000;
+}
+
+.social-icon-link.whatsapp {
+  background-color: #25D366;
 }
 
 .contact-footer {
   border-top: 1px solid #E0E0E0;
   padding-top: 20px;
-  color: #888888;
+  color: var(--color-text);
   font-size: 0.85rem;
   max-width: 600px;
   margin: 0 auto;
+  font-family: var(--font-main);
 }
 
 @media (min-width: 768px) {

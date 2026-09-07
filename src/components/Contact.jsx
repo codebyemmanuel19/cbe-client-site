@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaWhatsapp, FaTiktok, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import "./Contact.css";
 
 function Contact({ businessName, phone, email, address, socialLinks }) {
@@ -18,13 +19,13 @@ function Contact({ businessName, phone, email, address, socialLinks }) {
       <div className="contact-info">
         {phone && (
           <div className="contact-item">
-            <span className="icon">📞</span>
+            <FaPhoneAlt className="contact-icon" />
             <a href={`tel:${phone}`}>{phone}</a>
           </div>
         )}
         {email && (
           <div className="contact-item">
-            <span className="icon">✉️</span>
+            <FaEnvelope className="contact-icon" />
             <a href={`mailto:${email}`}>{email}</a>
           </div>
         )}
@@ -37,18 +38,29 @@ function Contact({ businessName, phone, email, address, socialLinks }) {
         </div>
       )}
 
-      {socialLinks && (socialLinks.facebook || socialLinks.instagram || socialLinks.whatsapp) && (
+      {socialLinks && (socialLinks.facebook || socialLinks.instagram || socialLinks.whatsapp || socialLinks.tiktok) && (
         <div className="contact-social">
-          <h3>Social Media</h3>
+          <h3>Follow Us</h3>
           <div className="social-icons">
             {socialLinks.facebook && (
-              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon-link facebook" aria-label="Facebook">
+                <FaFacebook />
+              </a>
             )}
             {socialLinks.instagram && (
-              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon-link instagram" aria-label="Instagram">
+                <FaInstagram />
+              </a>
+            )}
+            {socialLinks.tiktok && (
+              <a href={socialLinks.tiktok} target="_blank" rel="noopener noreferrer" className="social-icon-link tiktok" aria-label="TikTok">
+                <FaTiktok />
+              </a>
             )}
             {socialLinks.whatsapp && (
-              <a href={getWhatsAppUrl(socialLinks.whatsapp)} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href={getWhatsAppUrl(socialLinks.whatsapp)} target="_blank" rel="noopener noreferrer" className="social-icon-link whatsapp" aria-label="WhatsApp">
+                <FaWhatsapp />
+              </a>
             )}
           </div>
         </div>
