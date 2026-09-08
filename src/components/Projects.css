@@ -26,7 +26,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 10px;
 }
 
 .no-listings {
@@ -60,17 +60,17 @@
   display: flex;
   flex-direction: column;
   flex: 1;                      /* lets the button pin to the bottom */
-  padding: 12px 12px 14px;
+  padding: 10px 10px 12px;
 }
 
 .project-card h3 {
   font-family: var(--font-main);
   font-weight: 700;
-  font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+  font-size: 0.8rem;
   color: var(--color-heading);
   letter-spacing: -0.01em;
-  line-height: 1.25;
-  margin: 0 0 4px;
+  line-height: 1.3;
+  margin: 0 0 3px;
 
   /* two lines max, and always reserve both so rows line up */
   display: -webkit-box;
@@ -78,25 +78,24 @@
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.5em;
 }
 
 .project-card .price {
   font-family: var(--font-main);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--color-dark);
-  margin: 0 0 6px;
+  margin: 0 0 5px;
   letter-spacing: -0.01em;
 }
 
 .project-card-desc {
   font-family: var(--font-main);
   font-weight: 400;
-  font-size: 0.85rem;
-  line-height: 1.45;
+  font-size: 0.72rem;
+  line-height: 1.4;
   color: var(--color-text);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -108,13 +107,14 @@
 
 .view-btn {
   margin-top: auto;             /* bottom of the card, whatever the text length */
-  display: block;
+  align-self: flex-start;
+  display: inline-block;
   text-align: center;
   font-family: var(--font-main);
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 10px 12px;
-  border-radius: 8px;
+  font-size: 0.7rem;
+  padding: 6px 14px;
+  border-radius: 6px;
   border: 1px solid var(--color-dark);
   color: var(--color-dark);
   background: #FFFFFF;
@@ -171,9 +171,9 @@
   background: rgba(26, 26, 46, 0.75);
   color: #FFFFFF;
   font-family: var(--font-main);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  padding: 4px 8px;
+  padding: 3px 7px;
   border-radius: 6px;
 }
 
@@ -184,9 +184,9 @@
   background: rgba(26, 26, 46, 0.85);
   color: #FFFFFF;
   font-family: var(--font-main);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  padding: 4px 8px;
+  padding: 3px 7px;
   border-radius: 6px;
 }
 
