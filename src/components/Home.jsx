@@ -1,17 +1,9 @@
 import React from "react";
 import "./Home.css";
 
-// Same props as before + one optional new one (whatsappNumber)
-function Home({ businessName, description, heroImageUrl, whatsappNumber }) {
+function Home({ businessName, description, heroImageUrl }) {
   // No external fallback image — if there's no banner, CSS paints a clean gradient
   const hasBanner = Boolean(heroImageUrl);
-
-  const phone = String(whatsappNumber || "").replace(/\D/g, "");
-  const waLink = phone
-    ? `https://wa.me/${phone}?text=${encodeURIComponent(
-        `Hi ${businessName || "there"}, I saw your website and I'd like to order.`
-      )}`
-    : null;
 
   const scrollToProjects = () => {
     const section = document.getElementById("projects");
@@ -36,17 +28,6 @@ function Home({ businessName, description, heroImageUrl, whatsappNumber }) {
           <button className="home-cta" onClick={scrollToProjects}>
             Explore Our Products
           </button>
-
-          {waLink && (
-            <a
-              className="home-cta home-cta--ghost"
-              href={waLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Message on WhatsApp
-            </a>
-          )}
         </div>
       </div>
     </section>
