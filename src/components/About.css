@@ -39,7 +39,6 @@
   color: var(--color-heading);
 }
 
-/* Left-aligned: centred body copy is hard to read past a couple of lines */
 .about p.about-text {
   font-family: var(--font-main);
   margin: 0 0 14px;
@@ -47,7 +46,6 @@
   font-size: 1rem;
   line-height: 1.7;
   max-width: 62ch;
-  /* keeps single line breaks a client types inside one paragraph */
   white-space: pre-line;
 }
 
@@ -88,7 +86,6 @@
     align-items: center;
   }
 
-  /* two columns only when there's a photo to put beside the text */
   .about-inner:has(.about-media) {
     grid-template-columns: 5fr 6fr;
   }
