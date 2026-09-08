@@ -1,10 +1,67 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { CartProvider, useCart } from "./context/CartContext";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import ProductPage from "./components/ProductPage";
+import Cart from "./components/Cart";
 import "./App.css";
+
+// Jump to the top whenever the route changes
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+// Floating cart button — hidden when the cart is empty or already on the cart page
+function CartButton() {
+  const { totalItems } = useCart();
+  const { pathname } = useLocation();
+
+  if (totalItems === 0 || pathname === "/cart") return null;
+
+  return (
+    <Link className="cart-fab" to="/cart">
+      Cart <span className="cart-fab-count">{totalItems}</span>
+    </Link>
+  );
+}
+
+function ShopHome({ client, listings, contactData }) {
+  return (
+    <>
+      <Home
+        businessName={client.business_name}
+        description={client.home_text}
+        heroImageUrl={client.hero_url}
+        whatsappNumber={contactData.socialLinks.whatsapp}
+      />
+
+      <Projects
+        listings={listings}
+        currency={client.currency}
+        businessName={client.business_name}
+        whatsappNumber={contactData.socialLinks.whatsapp}
+      />
+
+      <About
+        businessName={client.business_name}
+        aboutText={client.about_text}
+      />
+
+      <Contact
+        businessName={client.business_name}
+        {...contactData}
+      />
+    </>
+  );
+}
 
 function App() {
   const [client, setClient] = useState(null);
@@ -19,7 +76,7 @@ function App() {
     let slug = "joesbarber";
 
     if (parts.length > 2 && hostname.endsWith("cbequicksite.com")) {
-      slug = parts[0];
+      slug = parts[0].toLowerCase();
     }
 
     fetch(`${API_BASE_URL}/clients/${slug}`)
@@ -68,10 +125,12 @@ function App() {
     );
   }
 
+  // Only this client's own details — no fallbacks to another business
   const contactData = {
-    phone: client.phone || "08012345678",
-    email: client.email || "hello@joesbarbershop.com",
-    address: client.address || "12 Allen Avenue, Ikeja, Lagos",
+    phone: client.phone,
+    email: client.email,
+    address: client.address,
+    hours: client.hours,
     socialLinks: {
       facebook: client.social_facebook,
       instagram: client.social_instagram,
@@ -81,27 +140,35 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Navbar businessName={client.business_name} logoUrl={client.logo_url} />
-      
-      <Home
-        businessName={client.business_name}
-        description={client.home_text}
-        heroImageUrl={client.hero_url}
-      />
-      
-      <Projects listings={listings} />
-      
-      <About 
-        businessName={client.business_name} 
-        aboutText={client.about_text} 
-      />
-      
-      <Contact 
-        businessName={client.business_name} 
-        {...contactData} 
-      />
-    </div>
+    <BrowserRouter>
+      <CartProvider>
+        <ScrollToTop />
+        <div className="App">
+          <Navbar businessName={client.business_name} logoUrl={client.logo_url} />
+
+          <Routes>
+            <Route
+              path="/"
+              element={<ShopHome client={client} listings={listings} contactData={contactData} />}
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductPage listings={listings} client={client} />}
+            />
+            <Route
+              path="/cart"
+              element={<Cart client={client} />}
+            />
+            <Route
+              path="*"
+              element={<ShopHome client={client} listings={listings} contactData={contactData} />}
+            />
+          </Routes>
+
+          <CartButton />
+        </div>
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 
