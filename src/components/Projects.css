@@ -8,7 +8,7 @@
 }
 
 .projects {
-  padding: 60px 5%;
+  padding: 48px 12px;
   background-color: #FFFFFF;
 }
 
@@ -147,7 +147,7 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  padding: 8px;
+  padding: 4px;
   box-sizing: border-box;
 }
 
@@ -217,6 +217,12 @@
 /* ---------- breakpoints ---------- */
 
 @media (min-width: 768px) {
+  .projects {
+    padding: 64px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
   .projects-grid {
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 18px;
@@ -225,6 +231,6 @@
 
 @media (max-width: 600px) {
   .projects {
-    padding: 40px 4%;
+    padding: 32px 10px;
   }
 }
