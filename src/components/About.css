@@ -30,10 +30,27 @@
 
 /* ---------- text ---------- */
 
+.about-body {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-eyebrow {
+  display: inline-block;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary, #3B82F6);
+  margin: 0 0 10px;
+}
+
 .about h2 {
   font-family: var(--font-main);
   font-size: 1.6rem;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--color-heading);
@@ -45,7 +62,6 @@
   color: var(--color-text);
   font-size: 1rem;
   line-height: 1.7;
-  max-width: 62ch;
   white-space: pre-line;
 }
 
@@ -59,9 +75,10 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px 20px;
-  margin: 24px 0 0;
-  padding: 18px 0 0;
+  margin: 28px 0 0;
+  padding: 20px 0 0;
   border-top: 1px solid var(--color-line, #E4E6EB);
   font-family: var(--font-main);
   font-size: 0.92rem;
@@ -69,9 +86,28 @@
   color: var(--color-heading);
 }
 
-.about-points li + li {
-  padding-left: 20px;
-  border-left: 1px solid var(--color-line, #E4E6EB);
+.about-points li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-points li::before {
+  content: "✓";
+  color: var(--color-primary, #3B82F6);
+  font-weight: 800;
+}
+
+/* ---------- with photo: switch back to left-aligned two-column ---------- */
+
+.about-inner:has(.about-media) .about-body {
+  max-width: 62ch;
+  margin: 0;
+  text-align: left;
+}
+
+.about-inner:has(.about-media) .about-points {
+  justify-content: flex-start;
 }
 
 /* ---------- desktop ---------- */

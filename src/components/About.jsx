@@ -4,11 +4,8 @@ import "./About.css";
 function About({ businessName, aboutText, aboutImageUrl, highlights }) {
   const text = (aboutText || "").trim();
 
-  // Nothing to show yet — render nothing rather than leaking a dashboard prompt
-  // onto the live site. The "tell your story" hint belongs in the dashboard input.
   if (!text && !aboutImageUrl) return null;
 
-  // Blank lines become real paragraphs; single line breaks stay inside one
   const paragraphs = text ? text.split(/\n\s*\n/).filter(Boolean) : [];
   const points = Array.isArray(highlights) ? highlights.filter(Boolean) : [];
 
@@ -26,6 +23,7 @@ function About({ businessName, aboutText, aboutImageUrl, highlights }) {
         )}
 
         <div className="about-body">
+          <span className="about-eyebrow">Our Story</span>
           <h2>About {businessName || "Us"}</h2>
 
           {paragraphs.map((para, index) => (
