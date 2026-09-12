@@ -4,9 +4,11 @@ import { CartProvider, useCart } from "./context/CartContext";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
+import Properties from "./components/Properties";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import ProductPage from "./components/ProductPage";
+import PropertyPage from "./components/PropertyPage";
 import Cart from "./components/Cart";
 import "./App.css";
 
@@ -19,12 +21,12 @@ function ScrollToTop() {
   return null;
 }
 
-// Floating cart button — hidden when the cart is empty or already on the cart page
-function CartButton() {
+// Floating cart button — shop only, hidden when the cart is empty
+function CartButton({ enabled }) {
   const { totalItems } = useCart();
   const { pathname } = useLocation();
 
-  if (totalItems === 0 || pathname === "/cart") return null;
+  if (!enabled || totalItems === 0 || pathname === "/cart") return null;
 
   return (
     <Link className="cart-fab" to="/cart">
@@ -33,22 +35,30 @@ function CartButton() {
   );
 }
 
-function ShopHome({ client, listings, contactData }) {
+// The homepage — the middle section changes with the client's template
+function SiteHome({ client, listings, contactData, isRealEstate }) {
   return (
     <>
       <Home
         businessName={client.business_name}
         description={client.home_text}
         heroImageUrl={client.hero_url}
-        whatsappNumber={contactData.socialLinks.whatsapp}
+        isRealEstate={isRealEstate}
       />
 
-      <Projects
-        listings={listings}
-        currency={client.currency}
-        businessName={client.business_name}
-        whatsappNumber={contactData.socialLinks.whatsapp}
-      />
+      {isRealEstate ? (
+        <Properties
+          listings={listings}
+          currency={client.currency}
+          sectionTitle={client.section_title}
+        />
+      ) : (
+        <Projects
+          listings={listings}
+          currency={client.currency}
+          sectionTitle={client.section_title}
+        />
+      )}
 
       <About
         businessName={client.business_name}
@@ -125,6 +135,9 @@ function App() {
     );
   }
 
+  // Anything that isn't "realestate" gets the shop template, so old clients keep working
+  const isRealEstate = client.template_type === "realestate";
+
   // Only this client's own details — no fallbacks to another business
   const contactData = {
     phone: client.phone,
@@ -139,33 +152,48 @@ function App() {
     },
   };
 
+  const home = (
+    <SiteHome
+      client={client}
+      listings={listings}
+      contactData={contactData}
+      isRealEstate={isRealEstate}
+    />
+  );
+
   return (
     <BrowserRouter>
       <CartProvider>
         <ScrollToTop />
         <div className="App">
-          <Navbar businessName={client.business_name} logoUrl={client.logo_url} />
+          <Navbar
+            businessName={client.business_name}
+            logoUrl={client.logo_url}
+            showCart={!isRealEstate}
+          />
 
           <Routes>
-            <Route
-              path="/"
-              element={<ShopHome client={client} listings={listings} contactData={contactData} />}
-            />
-            <Route
-              path="/product/:id"
-              element={<ProductPage listings={listings} client={client} />}
-            />
-            <Route
-              path="/cart"
-              element={<Cart client={client} />}
-            />
-            <Route
-              path="*"
-              element={<ShopHome client={client} listings={listings} contactData={contactData} />}
-            />
+            <Route path="/" element={home} />
+
+            {isRealEstate ? (
+              <Route
+                path="/property/:id"
+                element={<PropertyPage listings={listings} client={client} />}
+              />
+            ) : (
+              <>
+                <Route
+                  path="/product/:id"
+                  element={<ProductPage listings={listings} client={client} />}
+                />
+                <Route path="/cart" element={<Cart client={client} />} />
+              </>
+            )}
+
+            <Route path="*" element={home} />
           </Routes>
 
-          <CartButton />
+          <CartButton enabled={!isRealEstate} />
         </div>
       </CartProvider>
     </BrowserRouter>

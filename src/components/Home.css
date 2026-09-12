@@ -114,6 +114,31 @@
   outline-offset: 3px;
 }
 
+/* ---------- property template ---------- */
+
+/* Taller hero so the client's photo of the house leads the page */
+.home--property {
+  height: 88svh;
+  min-height: 520px;
+}
+
+@supports not (height: 88svh) {
+  .home--property { height: 88vh; }
+}
+
+.home--property .home-overlay {
+  padding-bottom: 56px;
+}
+
+.home--property h1 {
+  font-size: clamp(2.2rem, 9vw, 3rem);
+}
+
+/* no banner uploaded yet — deeper tone than the shop fallback */
+.home--property.home--no-image {
+  background-image: linear-gradient(160deg, #16202E 0%, #27384F 60%, #35506E 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-cta {
     transition: none;
@@ -158,5 +183,14 @@
       rgba(10, 12, 16, 0.62) 45%,
       rgba(10, 12, 16, 0.15) 100%
     );
+  }
+
+  .home--property {
+    height: 86svh;
+    min-height: 600px;
+  }
+
+  .home--property h1 {
+    font-size: clamp(3rem, 4.6vw, 3.8rem);
   }
 }

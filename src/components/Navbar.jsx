@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "./Navbar.css";
 
-function Navbar({ businessName, logoUrl }) {
+function Navbar({ businessName, logoUrl, showCart = true }) {
   const [isOpen, setIsOpen] = useState(false);
   const { totalItems } = useCart();
   const navigate = useNavigate();
@@ -43,10 +43,13 @@ function Navbar({ businessName, logoUrl }) {
         </Link>
 
         <div className="navbar-actions">
-          <Link className="navbar-cart" to="/cart" onClick={closeMenu} aria-label={`Cart, ${totalItems} items`}>
-            <FaShoppingCart />
-            <span className="navbar-cart-count">{totalItems}</span>
-          </Link>
+          {/* Property sites have no cart */}
+          {showCart && (
+            <Link className="navbar-cart" to="/cart" onClick={closeMenu} aria-label={`Cart, ${totalItems} items`}>
+              <FaShoppingCart />
+              <span className="navbar-cart-count">{totalItems}</span>
+            </Link>
+          )}
 
           <button className="menu-toggle" onClick={toggleMenu} aria-label="Menu">
             ☰
@@ -59,7 +62,9 @@ function Navbar({ businessName, logoUrl }) {
       <div className={`navbar-menu ${isOpen ? "open" : ""}`}>
         <button className="close-btn" onClick={closeMenu}>✕</button>
         <a href="/#home" onClick={goToSection("home")}>Home</a>
-        <a href="/#projects" onClick={goToSection("projects")}>Products</a>
+        <a href="/#projects" onClick={goToSection("projects")}>
+          {showCart ? "Products" : "Properties"}
+        </a>
         <a href="/#about" onClick={goToSection("about")}>About</a>
         <a href="/#contact" onClick={goToSection("contact")}>Contact</a>
         <a href="/#contact" className="cta-button" onClick={goToSection("contact")}>Contact Now!</a>
