@@ -65,7 +65,8 @@ function Properties({ listings, sectionTitle, currency = "NGN" }) {
   const [type, setType] = useState("all");       // all | sale | rent
   const [location, setLocation] = useState("all");
 
-  const all = listings || [];
+  // useMemo so the filters below don't rebuild on every render
+  const all = useMemo(() => listings || [], [listings]);
 
   // Build the location dropdown from whatever the agent actually listed
   const locations = useMemo(() => {
